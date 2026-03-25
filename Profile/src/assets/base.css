@@ -1,0 +1,92 @@
+/* 全局设计变量：颜色、阴影、排版和容器尺寸。 */
+:root {
+  color-scheme: light;
+  --color-background: #f7f0e4;
+  --color-background-soft: #efe2cf;
+  --color-surface: rgba(255, 250, 243, 0.7);
+  --color-surface-strong: #fffaf2;
+  --color-panel: rgba(255, 250, 243, 0.82);
+  --color-border: rgba(33, 25, 17, 0.1);
+  --color-border-strong: rgba(33, 25, 17, 0.18);
+  --color-heading: #18110b;
+  --color-text: rgba(24, 17, 11, 0.84);
+  --color-text-muted: rgba(24, 17, 11, 0.58);
+  --color-accent: #b45b31;
+  --color-accent-strong: #8d421f;
+  --color-inverse: #fff8ef;
+  --shadow-soft: 0 24px 60px rgba(91, 56, 26, 0.08);
+  --shadow-deep: 0 42px 110px rgba(76, 45, 19, 0.12);
+  --content-max-width: 1400px;
+  --section-max-width: 1240px;
+  --font-display:
+    'Baskerville Old Face', 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Songti SC',
+    'STSong', serif;
+  --font-body: 'Aptos', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-accent: var(--font-body);
+}
+
+/* 基础盒模型与默认外边距重置。 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 页面底色、纹理与字体渲染。 */
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(180, 91, 49, 0.2), transparent 22%),
+    radial-gradient(circle at 92% 0%, rgba(255, 255, 255, 0.78), transparent 28%),
+    linear-gradient(180deg, #faf3e8 0%, #efe2cf 38%, #f7f0e4 100%);
+  line-height: 1.65;
+  font-family: var(--font-body);
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 用伪元素叠加背景网格和柔和光斑。 */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(24, 17, 11, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 17, 11, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.85), transparent 82%);
+}
+
+body::after {
+  z-index: -1;
+  background:
+    radial-gradient(circle at 76% 18%, rgba(180, 91, 49, 0.1), transparent 20%),
+    radial-gradient(circle at 20% 70%, rgba(130, 97, 61, 0.08), transparent 24%);
+}
+
+/* 表单控件统一继承页面字体。 */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  color: var(--color-inverse);
+  background: rgba(180, 91, 49, 0.8);
+}

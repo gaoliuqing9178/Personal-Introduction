@@ -1,0 +1,158 @@
+@import './base.css';
+
+/* 应用根节点至少占满一屏高度。 */
+#app {
+  min-height: 100vh;
+}
+
+/* 媒体与基础元素的默认行为。 */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color 0.24s ease,
+    opacity 0.24s ease,
+    transform 0.24s ease;
+}
+
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+ul {
+  padding-left: 1.1rem;
+}
+
+/* 通用页面区块留白。 */
+.page-section {
+  width: min(100% - 2rem, var(--section-max-width));
+  padding-block: clamp(1.25rem, 3vw, 2.4rem);
+  margin: 0 auto;
+}
+
+.page-intro {
+  padding-top: clamp(1.5rem, 4vw, 3.25rem);
+}
+
+.eyebrow {
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* 通用按钮样式。 */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0.9rem 1.3rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: var(--font-accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.button--primary {
+  color: var(--color-inverse);
+  background: var(--color-heading);
+  box-shadow: var(--shadow-soft);
+}
+
+.button--secondary {
+  border-color: var(--color-border);
+  color: var(--color-heading);
+  background: rgba(255, 250, 243, 0.55);
+  backdrop-filter: blur(16px);
+}
+
+.button:hover,
+.button:focus-visible,
+.text-link:hover,
+.text-link:focus-visible {
+  transform: translateY(-2px);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--color-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.text-link::after {
+  content: '';
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+}
+
+/* 首屏加载时的轻量上浮动效。 */
+.load-rise {
+  opacity: 0;
+  animation: load-rise 0.9s cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
+}
+
+.load-rise--delay-1 {
+  animation-delay: 0.08s;
+}
+
+.load-rise--delay-2 {
+  animation-delay: 0.16s;
+}
+
+.load-rise--delay-3 {
+  animation-delay: 0.24s;
+}
+
+.load-rise--delay-4 {
+  animation-delay: 0.32s;
+}
+
+@keyframes load-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 尊重系统的减少动态效果设置。 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 手机尺寸下收紧页面左右留白。 */
+@media (max-width: 720px) {
+  .page-section {
+    width: min(100% - 1.25rem, var(--section-max-width));
+  }
+}
